@@ -1,0 +1,71 @@
+%header.bg
+  %aグループを作成しました
+
+%div.contents
+
+  %div.left-contents
+
+    %div.left-up-contents
+      %div.left-up-contents__user-name
+        %p.user-name
+          test-name
+        %ul.user-name__icon
+          %li.user-name__new-group
+            %a{:href => "#"}
+            = fa_icon("edit")
+          %li.user-name__edit
+            %a{:href => "#"}
+            = fa_icon("cog")
+
+    %div.left-down-contents
+      %p.user-group-name
+        test-group
+      %p.user-message
+        さようなら
+      %p.user-group-name
+        sample-group
+      %p.user-message
+        hello!
+      %p.user-group-name
+        example
+      %p.user-message
+        まだメッセージがありません
+
+  %div.right-contents
+
+    %div.right-up-contents
+      %div.right-up-left-contents
+        %p.right-user-group
+          test-group
+        %p.right-user-name
+          Member:指尾　慶
+      %a
+        %div.right-up-right-contents
+          Edit
+
+    %div.right-middle-contents
+      %div.chat-memory
+        %div.right-chat-user
+          %p.right-chat-name
+            test-user
+          %p.chat-time
+            2019/02/22(Sat) 15:22
+        %p.right-chat-message
+          こんにちは！
+      %div.chat-memory
+        %div.right-chat-user
+          %p.right-chat-name
+            test-user
+          %p.chat-time
+            2019/02/22(Sat) 15:22
+        %p.right-chat-message
+          こんにちは！
+
+    %div.right-down-contents
+      %form{:action => "/", :method => "post"}
+        %div.message-box
+          %input.message{:placeholder => "type a message", :name => "message"}
+          %label.icon
+            = fa_icon("image")
+        %input.send-bottum{:type => "submit", :name =>"send", :value => "SEND"}
+
