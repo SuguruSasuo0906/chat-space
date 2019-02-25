@@ -1,23 +1,23 @@
 %header.bg
   %aグループを作成しました
 
-%div.contents
+.contents
 
-  %div.left-contents
+  .left-contents
 
-    %div.left-up-contents
-      %div.left-up-contents__user-name
+    .left-up-contents
+      .left-up-contents__user-name
         %p.user-name
           test-name
         %ul.user-name__icon
           %li.user-name__new-group
-            %a{:href => "#"}
-            = fa_icon("edit")
+            = link_to do
+              %i.fa.fa-cog
           %li.user-name__edit
-            %a{:href => "#"}
-            = fa_icon("cog")
+            = link_to do
+              %i.fa.fa-edit
 
-    %div.left-down-contents
+    .left-down-contents
       %p.user-group-name
         test-group
       %p.user-message
@@ -31,29 +31,29 @@
       %p.user-message
         まだメッセージがありません
 
-  %div.right-contents
+  .right-contents
 
-    %div.right-up-contents
-      %div.right-up-left-contents
+    .right-up-contents
+      .right-up-left-contents
         %p.right-user-group
           test-group
         %p.right-user-name
           Member:指尾　慶
       %a
-        %div.right-up-right-contents
+        .right-up-right-contents
           Edit
 
-    %div.right-middle-contents
-      %div.chat-memory
-        %div.right-chat-user
+    .right-middle-contents
+      .chat-memory
+        .right-chat-user
           %p.right-chat-name
             test-user
           %p.chat-time
             2019/02/22(Sat) 15:22
         %p.right-chat-message
           こんにちは！
-      %div.chat-memory
-        %div.right-chat-user
+      .chat-memory
+        .right-chat-user
           %p.right-chat-name
             test-user
           %p.chat-time
@@ -61,11 +61,11 @@
         %p.right-chat-message
           こんにちは！
 
-    %div.right-down-contents
-      %form{:action => "/", :method => "post"}
-        %div.message-box
-          %input.message{:placeholder => "type a message", :name => "message"}
+    .right-down-contents
+      %form{action: "/", method: "post"}
+        .message-box
+          %input.message{placeholder: "type a message", name: "message"}
           %label.icon
             = fa_icon("image")
-        %input.send-bottum{:type => "submit", :name =>"send", :value => "SEND"}
+        %input.send-bottum{type: "submit", name: "send", value: "SEND"}
 
