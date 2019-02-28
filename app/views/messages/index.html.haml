@@ -1,0 +1,71 @@
+%header.bg
+  %aグループを作成しました
+
+.contents
+
+  .left-contents
+
+    .left-up-contents
+      .left-up-contents__user-name
+        %p.user-name
+          test-name
+        %ul.user-name__icon
+          %li.user-name__new-group
+            = link_to do
+              %i.fa.fa-cog
+          %li.user-name__edit
+            = link_to do
+              %i.fa.fa-edit
+
+    .left-down-contents
+      %p.user-group-name
+        test-group
+      %p.user-message
+        さようなら
+      %p.user-group-name
+        sample-group
+      %p.user-message
+        hello!
+      %p.user-group-name
+        example
+      %p.user-message
+        まだメッセージがありません
+
+  .right-contents
+
+    .right-up-contents
+      .right-up-left-contents
+        %p.right-user-group
+          test-group
+        %p.right-user-name
+          Member:指尾　慶
+      %a
+        .right-up-right-contents
+          Edit
+
+    .right-middle-contents
+      .chat-memory
+        .right-chat-user
+          %p.right-chat-name
+            test-user
+          %p.chat-time
+            2019/02/22(Sat) 15:22
+        %p.right-chat-message
+          こんにちは！
+      .chat-memory
+        .right-chat-user
+          %p.right-chat-name
+            test-user
+          %p.chat-time
+            2019/02/22(Sat) 15:22
+        %p.right-chat-message
+          こんにちは！
+
+    .right-down-contents
+      %form{action: "/", method: "post"}
+        .message-box
+          %input.message{placeholder: "type a message", name: "message"}
+          %label.icon
+            = fa_icon("image")
+        %input.send-bottum{type: "submit", name: "send", value: "SEND"}
+
