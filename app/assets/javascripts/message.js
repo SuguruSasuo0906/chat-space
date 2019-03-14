@@ -45,7 +45,6 @@ $(function(){
 
     .done(function(data){
       var html = buildHTML(data);
-      console.log(data)
       $('.right-middle-contents').append(html)
       $('.message').val('')
       $('.form__submit').attr('disabled',false)
