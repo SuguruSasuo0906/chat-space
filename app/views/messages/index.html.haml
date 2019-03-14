@@ -20,15 +20,15 @@
 
     .right-middle-contents
       .chat-memory
-        = render @messages
+
 
     .right-down-contents
-      = form_for [@group, @message] do |f|
-        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+      = form_for [@group, @message], html: {class: 'message-box'},id:"new_message" do |f|
+        = f.text_field :content, class: 'message', placeholder: 'type a message'
         .form__mask
           = f.label :image, class: 'form__mask__image' do
             = fa_icon 'picture-o', class: 'icon'
             = f.file_field :image, class: 'hidden'
-        = f.submit 'Send', class: 'form__subumit'
+        = f.submit 'Send', class: 'form__submit'
 
 
