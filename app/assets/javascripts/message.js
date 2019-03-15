@@ -44,10 +44,10 @@ $(function(){
     })
 
     .done(function(data){
-      var html = buildHTML(data);
+      var html = buildHTML(data)
       $('.right-middle-contents').append(html)
-      $('.message').val('')
       $('.form__submit').attr('disabled',false)
+      $('.message-box')[0].reset()
     })
 
     .fail(function(){
