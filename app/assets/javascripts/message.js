@@ -50,9 +50,9 @@ $(function(){
       $('.form__submit').attr('disabled',false)
     })
 
-      .fail(function(){
-        alert('error')
-        $('.form__submit').attr('disabled',false)
+    .fail(function(){
+      alert('error')
+      $('.form__submit').attr('disabled',false)
     })
   })
 });
