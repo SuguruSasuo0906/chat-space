@@ -1,12 +1,7 @@
 $(function(){
 
   function buildHTML(message){
-    var img = '';
-
-    if (message.image !== null) {
-      img = `<img src = "${message.image}" class = "lower-message__image">`
-    }
-
+    img = message.image ? `<img src = "${message.image}" class = "lower-message__image">`:"";
     var html = `<div class="chat-memory">
                   <div class="right-chat-user">
                     <div class="right-chat-name">
