@@ -2,7 +2,7 @@ $(function(){
 
   function buildHTML(message){
     img = message.image ? `<img src = "${message.image}" class = "lower-message__image">`:"";
-    var html = `<div class="chat-memory">
+    var html = `<div class="chat-memory" message-id="${message.id}">
                   <div class="right-chat-user">
                     <div class="right-chat-name">
                     ${message.user_name}
@@ -50,4 +50,30 @@ $(function(){
       $('.form__submit').attr('disabled',false)
     })
   })
+  var interval = setInterval(function(){
+    if(window.location.href.match(/\/groups\/\d+\/messages/)){
+      $.ajax({
+        url: location.href,
+        dataType: 'json',
+        processData: false,
+        contentType: false
+      })
+      .done(function(json){
+        var id = $('.chat-memory').attr('message-id');
+        var newhtml = '';
+        json.forEach(function(message){
+          if(message.id > id){
+            newhtml += buildHTML(message);
+          }
+        });
+        $('.chat-memory').append(newhtml).animate({
+          scrollTop: $('.chat-memory')[0].scrollHeight
+        },'fast');
+      })
+      .fail(function(json){
+        alert("自動更新は失敗しました");
+      });
+    }else{
+      clearInterval(interval);
+    }},5000);
 });
