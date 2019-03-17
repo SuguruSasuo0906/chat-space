@@ -1,6 +1,3 @@
-%header.bg
-  %aグループを作成しました
-
 .contents
 
   .left-contents
@@ -11,16 +8,16 @@
     .right-up-contents
       .right-up-left-contents
         %p.right-user-group
-          test-group
+          = @group.name
         %p.right-user-name
-          Member:指尾　慶
+          - @group.users.each do |user|
+            = user.name
       %a
         .right-up-right-contents
-          Edit
+          = link_to "edit", edit_group_path(@group)
 
     .right-middle-contents
       .chat-memory
-
 
     .right-down-contents
       = form_for [@group, @message], html: {class: 'message-box'},id:"new_message" do |f|
