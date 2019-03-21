@@ -17,8 +17,7 @@
           = link_to "edit", edit_group_path(@group)
 
     .right-middle-contents
-      .chat-memory
-        = render @messages
+      = render @messages
 
     .right-down-contents
       = form_for [@group, @message], html: {class: 'message-box'},id:"new_message" do |f|

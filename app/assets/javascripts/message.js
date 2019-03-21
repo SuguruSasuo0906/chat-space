@@ -2,7 +2,8 @@ $(function(){
 
   function buildHTML(message){
     img = message.image ? `<img src = "${message.image}" class = "lower-message__image">`:"";
-    var html = `<div class="chat-memory" message-id="${message.id}">
+
+    var html = `<div class="chat-memory" data-message-id="${message.id}">
                   <div class="right-chat-user">
                     <div class="right-chat-name">
                     ${message.user_name}
@@ -13,7 +14,7 @@ $(function(){
                   </div>
                   <div class="right-chat-message">
                     <p class="right-chat-message__content">
-                    ${message.text}
+                    ${message.content}
                     </p>
                     ${img}
                   </div>
@@ -22,13 +23,14 @@ $(function(){
   }
 
   function scroll() {
-    $('.messages').animate({scrollTop: $('.message')[0].scrollHeight});
+    $('.chat-memory').animate({scrollTop: $('.chat-memory')[0].scrollHeight});
   }
 
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
+
     $.ajax({
       url: url,
       type: "POST",
@@ -50,30 +52,37 @@ $(function(){
       $('.form__submit').attr('disabled',false)
     })
   })
+
+// 自動更新
   var interval = setInterval(function(){
     if(window.location.href.match(/\/groups\/\d+\/messages/)){
+
       $.ajax({
-        url: location.href,
-        dataType: 'json',
-        processData: false,
-        contentType: false
+        url: location.href.json,
+        type:'GET',
+        dataType:'json'
       })
+
       .done(function(json){
-        var id = $('.chat-memory').attr('message-id');
-        var newhtml = '';
-        json.forEach(function(message){
-          if(message.id > id){
-            newhtml += buildHTML(message);
+        var last_message_id = $('.chat-memory').last().data('message-id')
+        console.log(last_message_id);
+        console.dir(json);
+        var insertHTML = '';
+        json.messages.forEach(function(message){
+          if(message.id > last_message_id){
+            insertHTML += buildHTML(message);
           }
         });
-        $('.chat-memory').append(newhtml).animate({
-          scrollTop: $('.chat-memory')[0].scrollHeight
-        },'fast');
+        $('.right-middle-contents').append(insertHTML);
+        scroll()
       })
+
       .fail(function(json){
-        alert("自動更新は失敗しました");
+        alert('自動更新に失敗しました');
       });
+
     }else{
       clearInterval(interval);
-    }},5000);
+    }}, 5*1000);
+
 });
