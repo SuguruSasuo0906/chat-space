@@ -56,22 +56,19 @@ $(function(){
 // 自動更新
   var interval = setInterval(function(){
     if(window.location.href.match(/\/groups\/\d+\/messages/)){
+      var last_message_id = $('.chat-memory').last().data('message-id')
 
       $.ajax({
         url: location.href.json,
+        data:{id: last_message_id},
         type:'GET',
         dataType:'json'
       })
 
       .done(function(json){
-        var last_message_id = $('.chat-memory').last().data('message-id')
-        console.log(last_message_id);
-        console.dir(json);
         var insertHTML = '';
         json.messages.forEach(function(message){
-          if(message.id > last_message_id){
             insertHTML += buildHTML(message);
-          }
         });
         $('.right-middle-contents').append(insertHTML);
         scroll()
