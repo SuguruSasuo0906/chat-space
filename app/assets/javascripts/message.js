@@ -1,6 +1,4 @@
 $(document).on('turbolinks:load', function(){
-  $(function(){
-
     function buildHTML(message){
       img = message.image ? `<img src = "${message.image}" class = "lower-message__image">`:"";
 
@@ -57,32 +55,26 @@ $(document).on('turbolinks:load', function(){
 
   // 自動更新
     var interval = setInterval(function(){
-      if(window.location.href.match(/\/groups\/\d+\/messages/)){
+      if(location.pathname.match(/\/groups\/\d+\/messages/)){
         var last_message_id = $('.chat-memory').last().data('message-id')
 
         $.ajax({
-          url: location.href.json,
+          url: location.pathname,
           data:{id: last_message_id},
           type:'GET',
           dataType:'json'
         })
 
-        .done(function(json){
-          var insertHTML = '';
-          json.messages.forEach(function(message){
-              insertHTML += buildHTML(message);
+        .done(function(data){
+          data.forEach(function(message){
+            $('.right-middle-contents').append(buildHTML(message));
+            scroll();
           });
-          $('.right-middle-contents').append(insertHTML);
-          scroll();
         })
-
-        .fail(function(json){
+        .fail(function(data){
           alert('自動更新に失敗しました');
         });
-
       }else{
         clearInterval(interval);
-      }}, 5*1000);
-
-  });
+      }}, 5*1000)
 });
