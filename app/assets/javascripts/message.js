@@ -1,4 +1,6 @@
 $(document).on('turbolinks:load', function(){
+  $(function(){
+
     function buildHTML(message){
       img = message.image ? `<img src = "${message.image}" class = "lower-message__image">`:"";
 
@@ -65,16 +67,18 @@ $(document).on('turbolinks:load', function(){
           dataType:'json'
         })
 
-        .done(function(data){
-          data.forEach(function(message){
+        .done(function(json){
+          json.messages.forEach(function(message){
             $('.right-middle-contents').append(buildHTML(message));
             scroll();
           });
         })
-        .fail(function(data){
+        .fail(function(json){
           alert('自動更新に失敗しました');
         });
       }else{
         clearInterval(interval);
       }}, 5*1000)
+
+  });
 });
