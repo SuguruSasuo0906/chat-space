@@ -1,3 +1,4 @@
+
 $(function(){
 
   function buildHTML(message){
@@ -23,7 +24,7 @@ $(function(){
   }
 
   function scroll() {
-    $('.chat-memory').animate({scrollTop: $('.chat-memory')[0].scrollHeight});
+    $('.right-middle-contents').animate({scrollTop: $('.right-middle-contents')[0].scrollHeight},'fast');
   }
 
   $('#new_message').on('submit', function(e){
@@ -43,6 +44,7 @@ $(function(){
     .done(function(data){
       var html = buildHTML(data)
       $('.right-middle-contents').append(html)
+      scroll();
       $('.form__submit').attr('disabled',false)
       $('.message-box')[0].reset()
     })
@@ -71,7 +73,7 @@ $(function(){
             insertHTML += buildHTML(message);
         });
         $('.right-middle-contents').append(insertHTML);
-        scroll()
+        scroll();
       })
 
       .fail(function(json){
