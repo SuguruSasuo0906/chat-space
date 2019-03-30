@@ -10,6 +10,7 @@
         %p.right-user-group
           = @group.name
         %p.right-user-name
+          MEMBERS:
           - @group.users.each do |user|
             = user.name
       %a
